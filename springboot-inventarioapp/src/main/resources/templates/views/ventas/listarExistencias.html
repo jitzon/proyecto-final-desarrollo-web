@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="plantilla/template :: head">
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.21/css/dataTables.bootstrap4.min.css">
+</head>
+<body>
+	<header th:replace="plantilla/template :: header"></header>
+
+	<div class="container">		
+		<h1 th:text="${titulo}"></h1>		
+	</div>
+	
+	<div class="container">
+		
+		
+		
+		<table class="table" id="datat">
+			<thead class="thead-light">
+				<tr>
+					<th scope="col">Id Producto</th>
+					<th scope="col">Descripcion</th>
+					<th scope="col">Fecha Ingreso</th>
+					<th scope="col">Cantidad</th>
+			
+					
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="pr:${productos}">
+					<th scope="row" th:text="${pr.id}"></th>
+					<th scope="row" th:text="${pr.descripcion}"></th>
+					<td th:text="${pr.fecha}"></td>
+					<td th:text="${pr.cantidad}"></td>
+					
+			
+				</tr>
+			</tbody>
+		</table>
+
+	<div class="container">
+    <div class="row">
+        <div class="col">
+          <button ; type="button" class="btn btn-primary btn-lg">
+            Total Existencias: <span id="val" class="badge badge-light"></span>
+            </button>    
+        </div>
+    </div>
+   </div>
+
+	</div>
+
+	<footer th:replace="plantilla/template :: footer"></footer>
+<script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap4.min.js"></script>
+
+<script>
+var idioma={
+		"lengthMenu": 'Mostrar <select>'+
+		'<option value="5">5</option>'+
+		'<option value="10">10</option>'+
+		'<option value="15">15</option>'+
+		'<option value="20">20</option>'+
+		'<option value="-1">Todos</option>'+
+		'</select> registros',	
+    "sProcessing":     "Procesando...",
+    "sLengthMenu":     "Mostrar _MENU_ registros",
+    "sZeroRecords":    "No se encontraron resultados",
+    "sEmptyTable":     "Ningún dato disponible en esta tabla",
+    "sInfo":           "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+    "sInfoEmpty":      "Mostrando registros del 0 al 0 de un total de 0 registros",
+    "sInfoFiltered":   "(filtrado de un total de _MAX_ registros)",
+    "sInfoPostFix":    "",
+    "sSearch":         "Buscar:",
+    "sUrl":            "",
+    "sInfoThousands":  ",",
+    "sLoadingRecords": "Cargando...",
+    "oPaginate": {
+        "sFirst":    "Primero",
+        "sLast":     "Último",
+        "sNext":     "Siguiente",
+        "sPrevious": "Anterior"
+    },
+    "oAria": {
+        "sSortAscending":  ": Activar para ordenar la columna de manera ascendente",
+        "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+    },
+    "buttons": {
+        "copy": "Copiar",
+        "colvis": "Visibilidad"
+    }
+}
+		$('#datat').DataTable(
+			
+			{"language":idioma,
+            
+            "pageLength": 5}
+			);
+
+
+	</script>
+	
+	<script>
+            
+            var table = document.getElementById("datat"), sumVal = 0;
+            
+            for(var i = 1; i < table.rows.length; i++)
+            {
+                sumVal = sumVal + parseInt(table.rows[i].cells[3].innerHTML);
+            }
+            
+            document.getElementById("val").innerHTML =  sumVal;
+            
+            
+        </script>
+	
+</body>
+</html>
