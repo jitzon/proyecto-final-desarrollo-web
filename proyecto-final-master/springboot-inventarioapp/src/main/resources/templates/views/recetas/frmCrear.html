@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="plantilla/template :: head">
+</head>
+<body>
+	<header th:replace="plantilla/template :: header"></header>
+
+	<div class="container">
+	
+	<div class="card bg-light">
+		<div class="card-header bg-dark text-white" th:text="${titulo}"></div>
+		<div class="card-body">
+	
+		<form th:action="@{/views/recetas/save}" th:object="${receta}" method="post">
+		
+		<div class="form-group row">
+		
+			<label class="col-md-2" for="observacion">Ingrese Receta:</label> 
+				<input type="text" th:field="*{nombre}" class="form-control form-control-sm col-md-6" id="nombre"
+					placeholder="Nombre Receta"> 
+					<small class="form-text text-danger" th:if="${#fields.hasErrors('nombre')}"
+						th:errors="*{nombre}">
+					</small>
+			</div>	
+		  
+					
+			
+			<div class="form-group row">
+				<label class="col-md-2" for="producto">Producto 1:</label> 
+				<select th:field="*{producto1}" class="form-control form-control-sm col-md-6" id="producto1"> 
+					<option th:each="producto1:${productos}"
+						th:value="${producto1.id}"
+						th:text="${producto1.descripcion}"	
+					/>					
+				</select>
+			</div>
+			
+			
+			<div class="form-group row">
+		
+			
+				<input type="hidden" th:field="*{id}">
+				<label class="col-md-2" for="cantidad1">Cantidad:</label> 
+				<input type="text" th:field="*{cantidad1}" class="form-control form-control-sm col-md-6" id="cantidad1"
+					placeholder="Ingrese cantidad"> 
+					<small class="form-text text-danger" th:if="${#fields.hasErrors('cantidad1')}"
+						th:errors="*{nombres}">
+					</small>
+			</div>
+			
+			<div class="form-group row">
+				<label class="col-md-2" for="producto">Producto 2:</label> 
+				<select th:field="*{producto2}" class="form-control form-control-sm col-md-6" id="producto2"> 
+					<option th:each="producto2:${productos}"
+						th:value="${producto2.id}"
+						th:text="${producto2.descripcion}"	
+					/>					
+				</select>
+			</div>
+			
+			
+			<div class="form-group row">
+		
+			
+				<input type="hidden" th:field="*{id}">
+				<label class="col-md-2" for="cantidad2">Cantidad:</label> 
+				<input type="text" th:field="*{cantidad2}" class="form-control form-control-sm col-md-6" id="cantidad2"
+					placeholder="Ingrese cantidad"> 
+					<small class="form-text text-danger" th:if="${#fields.hasErrors('cantidad2')}"
+						th:errors="*{nombres}">
+					</small>
+			</div>
+			
+			<div class="form-group row">
+				<label class="col-md-2" for="producto">Producto 3:</label> 
+				<select th:field="*{producto3}" class="form-control form-control-sm col-md-6" id="producto3"> 
+					<option th:each="producto3:${productos}"
+						th:value="${producto3.id}"
+						th:text="${producto3.descripcion}"	
+					/>					
+				</select>
+			</div>
+			
+			
+			<div class="form-group row">
+		
+			
+				<input type="hidden" th:field="*{id}">
+				<label class="col-md-2" for="cantidad3">Cantidad:</label> 
+				<input type="text" th:field="*{cantidad3}" class="form-control form-control-sm col-md-6" id="cantidad3"
+					placeholder="Ingrese cantidad"> 
+					<small class="form-text text-danger" th:if="${#fields.hasErrors('cantidad3')}"
+						th:errors="*{nombres}">
+					</small>
+			</div>
+			
+			<div class="form-group row">
+				<label class="col-md-2" for="producto">Producto 4:</label> 
+				<select th:field="*{producto4}" class="form-control form-control-sm col-md-6" id="producto4"> 
+					<option th:each="producto4:${productos}"
+						th:value="${producto4.id}"
+						th:text="${producto4.descripcion}"	
+					/>					
+				</select>
+			</div>
+			
+			
+			<div class="form-group row">
+		
+			
+				<input type="hidden" th:field="*{id}">
+				<label class="col-md-2" for="cantidad4">Cantidad:</label> 
+				<input type="text" th:field="*{cantidad4}" class="form-control form-control-sm col-md-6" id="cantidad4"
+					placeholder="Ingrese cantidad"> 
+					<small class="form-text text-danger" th:if="${#fields.hasErrors('cantidad4')}"
+						th:errors="*{nombres}">
+					</small>
+			</div>
+			
+			<div class="form-group row">
+				<label class="col-md-2" for="producto">Producto 5:</label> 
+				<select th:field="*{producto5}" class="form-control form-control-sm col-md-6" id="producto5"> 
+					<option th:each="producto5:${productos}"
+						th:value="${producto5.id}"
+						th:text="${producto5.descripcion}"	
+					/>					
+				</select>
+			</div>
+			
+			
+			<div class="form-group row">
+		
+			
+				<input type="hidden" th:field="*{id}">
+				<label class="col-md-2" for="cantidad5">Cantidad:</label> 
+				<input type="text" th:field="*{cantidad5}" class="form-control form-control-sm col-md-6" id="cantidad5"
+					placeholder="Ingrese cantidad"> 
+					<small class="form-text text-danger" th:if="${#fields.hasErrors('cantidad5')}"
+						th:errors="*{nombres}">
+					</small>
+			</div>
+
+			<div class="form-group row">
+		
+			
+				<input type="hidden" th:field="*{id}">
+				<label class="col-md-2" for="cantidad5">Precio:</label> 
+				<input type="text" th:field="*{precio}" class="form-control form-control-sm col-md-6" id="precio"
+					placeholder="Ingrese precio"> 
+					<small class="form-text text-danger" th:if="${#fields.hasErrors('precio')}"
+						th:errors="*{nombres}">
+					</small>
+			</div>
+
+
+			<div class="card-footer bg-dark">
+				<input type="submit" class="btn btn-primary btn-sm" value="Guardar">
+			</div>
+			
+		</form>
+		</div>
+	</div>
+
+	</div>
+
+
+</body>
+</html>

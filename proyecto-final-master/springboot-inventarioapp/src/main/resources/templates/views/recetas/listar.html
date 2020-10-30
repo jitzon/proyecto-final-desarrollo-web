@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="plantilla/template :: head">
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.21/css/dataTables.bootstrap4.min.css">
+</head>
+<body>
+	<header th:replace="plantilla/template :: header"></header>
+
+	<div class="container">		
+		<h1 th:text="${titulo}"></h1>		
+	</div>
+	
+	<div class="container">
+		
+		<a class="btn btn-info btn-sm" th:href="@{/views/recetas/create}"
+			th:text="'Ingresar Receta'" title="Crear Nuevo Registro">
+		</a>
+		
+		<table class="table" id="datat">
+			<thead class="thead-light">
+				<tr>
+					<th scope="col">Id</th>
+					<th scope="col">Nombre</th>
+					<th scope="col">Fecha</th>
+					<th scope="col">Producto 1</th>
+					<th scope="col">Producto 2</th>
+					<th scope="col">Producto 3</th>
+					<th scope="col">Producto 4</th>
+					<th scope="col">Producto 5</th>
+					<th scope="col">Precio</th>
+					<th scope="col">Acciones</th>
+					
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="re:${recetas}">
+					<th scope="row" th:text="${re.id}"></th>
+					<td th:text="${re.nombre}"></td>
+					<td th:text="${re.fecha}"></td>
+					<td th:text="${re.cantidad1} + ' ' + ${re.producto1.descripcion}"></td>	
+					<td th:text="${re.cantidad2} + ' ' + ${re.producto2.descripcion}"></td>	
+					<td th:text="${re.cantidad3} + ' ' + ${re.producto3.descripcion}"></td>	
+					<td th:text="${re.cantidad4} + ' ' + ${re.producto4.descripcion}"></td>		
+					<td th:text="${re.cantidad5} + ' ' + ${re.producto5.descripcion}"></td>	
+					<td th:text="${re.precio}"></td>
+
+					<td>
+				
+						<a class="btn btn-info btn-sm" th:href="@{/views/recetas/edit/} + ${re.id}"
+							th:text="'Editar'" title="Modificar">
+						</a> 	
+						<a class="btn btn-danger btn-sm" th:href="@{/views/recetas/delete/} + ${re.id}"
+						onclick="return confirm('Esta seguro de eliminar el registro?');"
+						th:text="'Eliminar'" title="Eliminar">		
+							
+						</a> 
+					</td>	
+			
+				</tr>
+			</tbody>
+		</table>
+
+
+	</div>
+
+	
+<script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap4.min.js"></script>
+
+<script>
+var idioma={
+		"lengthMenu": 'Mostrar <select>'+
+		'<option value="5">5</option>'+
+		'<option value="10">10</option>'+
+		'<option value="15">15</option>'+
+		'<option value="20">20</option>'+
+		'<option value="-1">Todos</option>'+
+		'</select> registros',	
+    "sProcessing":     "Procesando...",
+    "sLengthMenu":     "Mostrar _MENU_ registros",
+    "sZeroRecords":    "No se encontraron resultados",
+    "sEmptyTable":     "Ningún dato disponible en esta tabla",
+    "sInfo":           "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+    "sInfoEmpty":      "Mostrando registros del 0 al 0 de un total de 0 registros",
+    "sInfoFiltered":   "(filtrado de un total de _MAX_ registros)",
+    "sInfoPostFix":    "",
+    "sSearch":         "Buscar:",
+    "sUrl":            "",
+    "sInfoThousands":  ",",
+    "sLoadingRecords": "Cargando...",
+    "oPaginate": {
+        "sFirst":    "Primero",
+        "sLast":     "Último",
+        "sNext":     "Siguiente",
+        "sPrevious": "Anterior"
+    },
+    "oAria": {
+        "sSortAscending":  ": Activar para ordenar la columna de manera ascendente",
+        "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+    },
+    "buttons": {
+        "copy": "Copiar",
+        "colvis": "Visibilidad"
+    }
+}
+		$('#datat').DataTable(
+			
+			{"language":idioma,
+            
+            "pageLength": 5}
+			);
+
+
+	</script>
+</body>
+</html>
